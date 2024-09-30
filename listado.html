@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL BOLSÓN</title>
+    <link rel="icon" href="IMG/LOGO.ico">
+    <link rel="stylesheet" href="listado.css">
+    
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="./IMG/LOGO.ico" alt="Logo de la marca">
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li>
+                        <a href="/index.html"><strong>Home</strong></a>
+                    </li>
+                    <li>
+                        <a href="/acercaDe.html"><strong>Acerca de</strong></a>
+                    </li>
+                    <li>
+                        <a href="/contacto.html"><strong>Contacto</strong></a>
+                    </li>
+                    <li>
+                        <a href="/susursales.html"><strong>Sucursales</strong></a>
+                    </li>
+                    <li>
+                        <a href="/registro.html"><strong>Registro</strong></a>
+                    </li>
+                    <li>
+                        <a href="/clientes.html"><strong>Nuestros clientes</strong></a>
+                    </li>
+                    <li>
+                        <p><strong>LISTADO CLIENTES</strong></p>
+                    </li>
+                </ul>
+            </nav>
+        
+        </header>
+        <main class="main">
+            <h1 class="main__title">CLIENTES PREMIUM</h1>
+            <div class="secciones">
+                <div class="in-flex">
+            <section class="section section-form">
+                <h2 class="section__title">INGRESAR DATOS</h2>
+            <form class="form_task">
+                <label class="form__label" for="nombre">NOMBRE</label>
+                <input  class="form__input" id="nombre" type="text" name="nombre" onkeypress="return soloLetras(event);"/>
+                <label class="form__label" for="apellido">APELLIDO</label>
+                <input class="form__input" id="apellido" type="text" name="apellido" onkeypress="return soloLetras(event);"/>
+                <button class="form__button" type="submit">GUARDAR</button>
+            </form>
+                <div class="error"></div>
+                
+            </section>
+        </div>
+        <div class="in-flex">
+            <section class="section section-list">
+            <h3 class="section__list">LISTADO CLIENTES PREMIUM</h3>
+            <ul id="taskList" class="tasks">
+                
+            </ul>
+            </section>
+        </div>
+        </div>
+        </main>
+        <footer>
+            <div class="footer">
+                    <nav>
+                        <div class="_footer">
+                        <p>EL BOLSÓN</p>
+                        </div>
+                        <div class="_footer">
+                        <p>&COPY2024</p>
+                        </div>
+                    </nav>
+            </div>
+        </footer>
+    </div>
+<SCript src="listado.js"></SCript>
+
+</body>
+</html>

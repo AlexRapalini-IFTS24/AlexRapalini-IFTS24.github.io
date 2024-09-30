@@ -1,0 +1,226 @@
+@import url("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"); 
+
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+
+}
+body{  
+    background:linear-gradient(rgba(75, 75, 112, 0.705), rgba(240, 240, 252, 0.705)), url(IMG//cervezas.jpg) center center no-repeat ;
+    background-size: cover;
+    background-attachment: fixed;
+
+
+}
+
+/* estilo para el nav, donde los items quedan en fila y mas cerca de la izquierda */
+.header {
+    display: flex;
+    justify-content: flex-start;
+}
+.navbar ul {
+
+    list-style: none;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin: 40px;
+    padding: 0 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.navbar ul li a:hover { 
+    padding: 5px;
+    background: #1d043a; 
+    border-radius: 10px;
+
+}
+
+.navbar ul li p {
+    color: rgb(184, 130, 160);
+}
+.logo img {
+    margin: 15px;
+    border-radius: 50px;
+    height: 50px;
+    width: auto;
+    transition: all 0.4s;
+}
+.logo img:hover {
+    transform: scale(1.3);
+}
+
+
+ul,
+ol {
+    list-style: none;
+}
+
+/*Contenedor cuerpo html, lo hago para q quede todo uniforme, dejando el footer al pie de la pagina*/
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+}
+
+
+/*Titulo principal*/
+.main__title {
+    color: #147bc0;
+    text-shadow: 4px 4px 9px #000;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em; /*8px*/
+    font-weight: bold;
+    font-size: 80px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
+
+
+
+/* titulo form */
+.section__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    margin: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* titulo listado */
+.section__list {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 2em;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.form__label {
+    
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
+/* transforma en mayuscula la entrada de palabras en el input */
+.form__input {
+    text-transform: uppercase;
+}
+
+/* encierra las secciones del form y el listado, hecho para q su contenido sea responsive*/
+.secciones {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+/* clase de los div que encierra secciones */
+.in-flex {
+    flex: 1;
+    padding: 25px;
+    margin-top: 5em;
+    min-width: 250px;
+}
+
+
+/* caja que recubre el form */
+.section-form {
+    box-sizing: border-box;
+
+    color: #000000;
+    box-shadow: 7px 13px 37px #000;   
+    border-radius: 6px;
+    padding: 25px;
+}
+
+/* caja que recubre el listado */
+.section-list {
+    box-sizing: border-box;
+
+    color: #000000;
+    box-shadow: 7px 13px 37px #000;   
+    border-radius: 6px;
+    padding: 25px;
+}
+
+.form__button {
+    border-radius: 8px;
+    background-color: rgb(11, 179, 157);
+    padding: 0.25em 1em;
+    margin-top: 25px;
+}
+
+.error {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    color: red;
+}
+
+/* lista js */
+.tasks__item {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.done {
+    text-decoration: line-through;/*linea de tachado*/
+}
+
+.bx-check {
+    color: green;
+    cursor: pointer;
+}
+
+.bx-trash {
+    color: red;
+    cursor: pointer;
+}
+
+
+.footer {
+    font-size: 20px;
+    text-align: center;
+    padding: 1em 0;
+    font-weight: bold;
+
+}
+
+
+
+
+
+
+@media (min-width: 768px) {/*mediaquery sirve para el responsive*/
+    .section {
+        max-width: 400px;
+        margin: auto;
+        
+    }
+} 
+
+
+
+
+
+/*p de listado de js */
+#entrada {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
