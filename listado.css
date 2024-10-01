@@ -138,17 +138,18 @@ ol {
 /* caja que recubre el form */
 .section-form {
     box-sizing: border-box;
-
+    
     color: #000000;
     box-shadow: 7px 13px 37px #000;   
     border-radius: 6px;
     padding: 25px;
+   
 }
 
 /* caja que recubre el listado */
 .section-list {
     box-sizing: border-box;
-
+   
     color: #000000;
     box-shadow: 7px 13px 37px #000;   
     border-radius: 6px;
@@ -169,7 +170,7 @@ ol {
 }
 
 /* lista js */
-.tasks__item {
+.clientes__item {
     display: flex;
     justify-content: space-between;
 }
@@ -222,5 +223,6 @@ ol {
     font-weight: bold;
     text-transform: uppercase;
 }
+
 
 
