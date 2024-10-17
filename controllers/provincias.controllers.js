@@ -3,9 +3,9 @@ const db = require("../db/db")
 
 //METODO GET//
 
-//Para todos los clientes
-const allClientes = (req, res) => {
-    const sql = "SELECT * FROM clientes";
+//Para todos las provincias
+const allProvincias = (req, res) => {
+    const sql = "SELECT * FROM provincias";
     db.query(sql, (error,rows) => {
         if(error) {
         return res.status(500).json({error : "ERROR : Intente más tarde"});
@@ -14,17 +14,17 @@ const allClientes = (req, res) => {
     });
 };
 
-//Para un cliente
-const showCliente = (req, res) => {
+//Para una provincia
+const showProvincia = (req, res) => {
     const{id} = req.params;
-    const sql = "SELECT * FROM clientes  WHERE id_cliente = ?";
+    const sql = "SELECT * FROM provincias  WHERE id_provincia = ?";
     db.query(sql,[id], (error,rows) => {
         console.log(rows);
         if(error) {
         return res.status(500).json({error : "ERROR : Intente más tarde"});
         }
         if(rows.length ==0){
-            return res.status(404).send({error : "ERROR: No existe el cliente"});
+            return res.status(404).send({error : "ERROR: No existe la provincia"});
         };
         res.json(rows[0]);
         //me muestra el elemento en la posicion 0 si existe
@@ -33,10 +33,10 @@ const showCliente = (req, res) => {
 
 //METODO POST//
 
-const storeCliente = (req, res) => {
-    const {nombre, apellido, celular, fk_provincia,  fecha_nac, fk_genero} = req.body;
-    const sql = "INSERT INTO clientes (nombre, apellido, celular, fk_provincia, fecha_nac, fk_genero) VALUES (?,?,?,?,?,?)";
-    db.query(sql,[nombre, apellido, celular, fk_provincia, fecha_nac, fk_genero], (error, result) => {
+const storeProvincia = (req, res) => {
+    const {nombre_provincia} = req.body;
+    const sql = "INSERT INTO provincias (nombre_provincia) VALUES (?)";
+    db.query(sql,[nombre_provincia], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente mas tarde por favor"});
@@ -48,17 +48,17 @@ const storeCliente = (req, res) => {
 };
 
 //METODO PUT//
-const updateCliente = (req, res) => {
+const updateProvincia = (req, res) => {
     const{id} = req.params;
-    const {nombre, apellido, celular, fk_provincia, fecha_nac, fk_genero} = req.body;
-    const sql = "UPDATE clientes SET nombre = ?, apellido = ?, celular = ?, fk_provincia = ?,  fecha_nac = ?, fk_genero = ? WHERE id_cliente = ?";
-    db.query(sql,[nombre, apellido, celular, fk_provincia, fecha_nac, fk_genero, id], (error, result) => {
+    const {nombre_provincia} = req.body;
+    const sql = "UPDATE provincias SET nombre_provincia = ? WHERE id_provincia = ?";
+    db.query(sql,[nombre_provincia, id], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente mas tarde por favor"});
         }
         if(result.affectedRows == 0){
-            return res.status(404).send({error : "Error cliente a modificar no existe"});
+            return res.status(404).send({error : "Error, provincia a modificar no existe"});
         };
         const cliente = {...req.body, ...req.params}; // ... reconstruir el objeto del body
         res.json(cliente);//muestro el elemento q existe
@@ -66,26 +66,26 @@ const updateCliente = (req, res) => {
 };
 
 //METODO DELETE//
-const destroyCliente = (req, res) => {
+const destroyProvincia = (req, res) => {
     const {id} = req.params;
-    const sql ="DELETE FROM clientes WHERE id_cliente = ?";
+    const sql ="DELETE FROM provincias WHERE id_provincia = ?";
     db.query(sql,[id], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente mas tarde por favor"});
         }
         if(result.affectedRows == 0){
-            return res.status(404).send({error : "ERROR: El cliente a eliminar no existe"});
+            return res.status(404).send({error : "ERROR: La provincia a eliminar no existe"});
         };
-        res.json({mensaje : "Cliente eliminado"});
+        res.json({mensaje : "Provincia eliminada"});
     });     
 };
 
 //EXPORTAR DEL MODULO TODAS LAS FUNCIONES
 module.exports = {
-    allClientes,
-    showCliente,
-    storeCliente,
-    updateCliente, 
-    destroyCliente
+    allProvincias,
+    showProvincia,
+    storeProvincia,
+    updateProvincia, 
+    destroyProvincia
 };
