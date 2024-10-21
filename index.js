@@ -1,6 +1,8 @@
 //CONFIRMAR LO QUE SERÍA UN SERVIDOR CON LAS MISMAS PRESTACIONES PARA CORRER EXPRESS
 //Que este escuchando y tengamos una ruta principal "/" en el proyecto
 
+require('dotenv').config();//variable de entornos
+
 const express = require("express");
 const app = express();
 
@@ -15,10 +17,14 @@ app.use('/clientes', clientesRouter);
 const provinciasRouter = require('./routers/provincias.router');
 app.use('/provincias', provinciasRouter);
 
+const authRouter = require('./routers/auth.router');
+app.use("/auth", authRouter);
+
+
 app.get("/", (req, res) => {
-    res.send("Hola Cinema");
+    res.send("Hola Cliente");
 });
 //esta es la ruta principal del proyecto "/"
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;//saca el puerto q tenga definido el servidor desde las variables de entorno
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
