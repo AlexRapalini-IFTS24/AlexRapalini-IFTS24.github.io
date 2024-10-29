@@ -1,20 +1,16 @@
-//Rutas del modulo
-const express = require('express'); // Requiere el módulo 'express', que es un framework para crear aplicaciones web en Node.js.
+/// RUTAS DEL MODULO ///
+const express = require("express"); // Requiere el módulo 'express', que es un framework para crear aplicaciones web en Node.js.
 const router = express.Router(); // Crea una instancia del enrutador de Express.
 
-// AUT
-const controller = require('../controllers/auth.controller'); // Importa el controlador de autenticación.
-const authenticateToken = require('../middleware/auth.middleware'); // Importa el middleware de autenticación de tokens.
-
 // MULTER
- const multer = require("multer"); // Requiere el módulo 'multer', que es un middleware para manejar la subida de archivos en Node.js.
+const multer = require("multer"); // Requiere el módulo 'multer', que es un middleware para manejar la subida de archivos en Node.js.
 const path = require("path"); // Requiere el módulo 'path', que proporciona utilidades para trabajar con rutas de archivos y directorios.
 
 // Configuración de almacenamiento de Multer
 const storage = multer.diskStorage({
     // Define el destino donde se guardarán los archivos subidos
     destination: (req, file, cb) => {
-        cb(null, 'uploads'); // Define la carpeta 'uploads' como destino, esta carpeta debe existir en la raíz del proyecto
+        cb(null, 'uploadsComentarios'); // Define la carpeta 'uploadsComentarios' como destino, esta carpeta debe existir en la raíz del proyecto
     },
     // Define el nombre del archivo subido
     filename: (req, file, cb) => {
@@ -24,10 +20,10 @@ const storage = multer.diskStorage({
 });
 
 // Inicializa Multer con la configuración de almacenamiento
-const upload = multer({
+const uploadsComentarios = multer({
     storage, // Utiliza la configuración de almacenamiento definida anteriormente
     fileFilter: (req, file, cb) => {
-        //console.log(file); // Imprime información del archivo en la consola para depuración
+        console.log(file); // Imprime información del archivo en la consola para depuración
         const fileTypes = /jpg|jpeg|png/; // Define los tipos de archivo permitidos (jpg, jpeg, png)
         const mimetype = fileTypes.test(file.mimetype); // Verifica que el tipo MIME del archivo sea válido
         const extname = fileTypes.test(path.extname(file.originalname).toLowerCase()); // Verifica que la extensión del archivo sea válida
@@ -39,19 +35,28 @@ const upload = multer({
     limits: { fileSize: 1024 * 1024 * 1 }, // Define el límite de tamaño del archivo (aproximadamente 1Mb)
 });
 
-// Método POST para registrar un nuevo usuario con una imagen de perfil
-router.post('/register', upload.single('imagen_perfil'), controller.register);
+///////////////////////////////////////////
 
-// Método POST para iniciar sesión
-router.post('/login', controller.login);
+const controller = require("../controllers/comentario.controller"); // Importa el controlador de comentarios.
 
-// Ruta protegida
-// Define una ruta GET en el enrutador para la URL '/protected' y aplica el middleware de autenticación 'authenticateToken'
-router.get('/protected', authenticateToken, (req, res) => {
-    res.status(200).send(`Hola Usuario número ${req.user.id}`); // Envía un mensaje de respuesta con el ID del usuario autenticado
-});
+// METODO GET
+// Para obtener todos los comentarios
+router.get('/', controller.allComentario);
 
-// Exportar routers
+// Para obtener un comentario específico por ID
+router.get('/:id', controller.showComentario);
+
+// METODO POST
+// Para crear un nuevo comentario con imagen
+router.post('/', uploadsComentarios.single('imagen'), controller.storeComentario);
+
+// METODO PUT
+// Para actualizar un comentario existente por ID con imagen
+router.put('/:id', uploadsComentarios.single('imagen'), controller.updateComentario);
+
+// METODO DELETE
+// Para eliminar un comentario por ID
+router.delete('/:id', controller.destroyComentario);
+
+// EXPORTAR ROUTERS
 module.exports = router; // Exporta el enrutador para ser utilizado en otras partes de la aplicación.
-
-
